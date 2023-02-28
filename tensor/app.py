@@ -1,13 +1,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-x = np.linspace(0, 20, 1000)
-plt.plot(x, np.sin(x))
+x = 10
+y = 10
+Dx = 0.01
+yPoints = []
+xPoints = []
 
-plt.title("The Seth Coaster")
-plt.xlabel("Length of roller coaster")
-plt.ylabel("Height of hills")
+def givenFunction(x, y):
+    return(x+y)/(x-y)
 
+while y<0:
+    y = y + Dx*givenFunction(x,y)
+    x = x + Dx
+    yPoints.append(round(y, 2))
+    xPoints.append(round(x, 2))
+
+yPoints = np.asarray(yPoints)
+xPoints = np.asarray(xPoints)
+
+plt.plot(xPoints, yPoints)
 plt.show()
-
-print ("hello world")
