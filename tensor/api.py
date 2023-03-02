@@ -1,15 +1,24 @@
-from lxml import etree
 import requests
+import numpy as np
 import pandas as pd
+from pandas import json_normalize
+import json
 
-query_params = {
-    'ids': 'PABE', 
-    'format': 'xml'
-    }
-endpoint = "https://beta.aviationweather.gov/cgi-bin/data/taf.php"
-response = requests.get(endpoint, params=query_params)
+database = {}
+url = "https://api.thedogapi.com/v1/breeds"
 
-print(response.status_code)
-print(response.headers.get("Content-Type"))
-cleanApi = etree.parse(response.content)
-something = pd.read_xml(cleanApi)
+try:
+    r = requests.get(url)
+    print (r)
+    data = json.loads()
+    json_normalize(data['results'])
+except:
+    print("You done messed up, son")
+
+
+try:
+    j = r.content.pop(0)
+    j = pd.DataFrame(r)
+    print(j) 
+except:
+    print("You done messed up son")
