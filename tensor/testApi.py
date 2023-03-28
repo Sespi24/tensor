@@ -8,6 +8,7 @@ url = "https://beta.aviationweather.gov/cgi-bin/data/taf.php?ids=KORD&format=xml
 
 try:
     r = requests.get(url)
+    print(r.headers.get("Content-Type"))
     xml = r.content
     root = et.fromstring(xml)
 
